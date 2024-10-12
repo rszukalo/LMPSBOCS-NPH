@@ -117,7 +117,7 @@ FixBocs::FixBocs(LAMMPS *lmp, int narg, char **arg) :
   if (domain->zperiodic && dimension == 3) {
     if (domain->yz != 0.0) scaleyz = 1;
     if (domain->xz != 0.0) scalexz = 1;
-  }
+
 
   // set fixed-point to default = center of cell
 
@@ -367,8 +367,7 @@ FixBocs::FixBocs(LAMMPS *lmp, int narg, char **arg) :
 
   /*~ MRD I copied this from fix_npt.cpp 8/17/17 ~*/
 
-  if (!tstat_flag)
-    error->all(FLERR,"Temperature control must be used with fix bocs");
+  /* RJS I removed the tstat_flag check as we now want to be able to use fix bocs without a thermostat (similar to fix nph) 10/12/24 */
   if (!pstat_flag)
     error->all(FLERR,"Pressure control must be used with fix bocs");
 
